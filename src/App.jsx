@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import {v4 as uuidv4} from 'uuid';
 
 import Header from './components/Header.jsx'
+import AddTask from "./components/AddTask";
 
 import './App.css';
 
@@ -13,7 +15,7 @@ const App = () => {
     },
     {
       id: '2',
-      title: 'Estudar para USP',
+      title: 'Estudar USP',
       completed: false
     },
     {
@@ -23,9 +25,23 @@ const App = () => {
     }
   ]);
 
+  const handleTaskAddition = (taskTitle) => {
+    const newTasks = [
+      ...tasks, 
+      { 
+        id: uuidv4(), 
+        title: taskTitle, 
+        completed: false 
+      }
+    ]
+
+    setTasks(newTasks);
+  }
+
   return (
     <div className='container'> 
       <Header />
+      <AddTask handleTaskAddition={handleTaskAddition} />
     </div>
   )
 }
