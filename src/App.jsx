@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {v4 as uuidv4} from 'uuid';
+
+import axios from 'axios';
 
 import Header from './components/Header.jsx'
 import Tasks from "./components/Tasks.jsx";
@@ -25,6 +27,16 @@ const App = () => {
       completed: true
     }
   ]);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const {data} = await axios.get('https://jsonplaceholder.cypress.io/todos?_limit=10');
+      
+      setTasks(data);
+    }
+
+    fetchTasks();
+  }, []) // lista de dependências, executa código qdo essas variáveis mudarem
 
   const handleTaskAddition = (taskTitle) => {
     const newTasks = [
