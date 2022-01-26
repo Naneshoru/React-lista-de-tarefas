@@ -10,7 +10,8 @@
   cursor: pointer;
 }
 
-.remove-task-button, .see-task-details-button {
+.remove-task-button, 
+.see-task-details-button {
   background-color: #444;
   color: chartreuse;
   border: none;
