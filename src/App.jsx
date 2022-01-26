@@ -37,7 +37,8 @@ const App = () => {
     }
 
     fetchTasks();
-  }, []) // lista de dependências, executa código qdo essas variáveis mudarem
+  }, []) // lista de dependências, executa código quando as variáveis dentro do array mudarem
+  // Neste caso, vai ser executado ao iniciar a página
 
   const handleTaskAddition = (taskTitle) => {
     const newTasks = [
