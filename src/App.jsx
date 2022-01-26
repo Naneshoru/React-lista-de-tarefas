@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {v4 as uuidv4} from 'uuid';
-
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import Header from './components/Header.jsx'
 import Tasks from "./components/Tasks.jsx";
 import AddTask from "./components/AddTask";
+import TaskDetails from "./components/TaskDetails.jsx";
 
 import './App.css';
 
@@ -70,17 +71,33 @@ const App = () => {
   }
 
   return (
-
+    <Router> 
       <div className='container'> 
         <Header />
-   
-        <AddTask handleTaskAddition={handleTaskAddition} />
-        <Tasks 
-          tasks={tasks} 
-          handleTaskClick={handleTaskClick} 
-          handleTaskRemotion={handleTaskRemotion}
-        />
+        <Routes>
+          <Route
+            path='/'
+            exact
+            element={
+              <>
+                <AddTask handleTaskAddition={handleTaskAddition} />
+                <Tasks 
+                  tasks={tasks} 
+                  handleTaskClick={handleTaskClick} 
+                  handleTaskRemotion={handleTaskRemotion}
+                />
+              </>
+            }
+          /> 
+          <Route
+            path='/:taskTitle'
+            exact
+            element={<TaskDetails />}
+          >
+          </Route>
+        </Routes>
       </div>
+    </Router>
   )
 }
 
