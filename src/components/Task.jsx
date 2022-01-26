@@ -15,23 +15,13 @@ const Task = ({task, handleTaskClick, handleTaskRemotion }) => {
   return (
     <div className={`task-container ${task.completed ? 'task-completed' : ''}`} onClick={() => {handleTaskClick(task.id)}}>
       <div className='task-title'>
-      {task.title}
+        {task.title}
       </div>
-
-      <div className='buttons-container'>
-        <button 
-          className='remove-task-button' 
-          onClick={(event) => {
-            handleTaskRemotion(task.id)
-            // event.stopPropagation();
-          }}
-        >
+      <div className='buttons-container' onClick={(e) => {e.stopPropagation()}}>
+        <button className='remove-task-button' onClick={() => {handleTaskRemotion(task.id)}}>
           <CgClose />
         </button>
-        <button 
-          className='see-task-details-button'
-          onClick={handleTaskDetailsClick}
-        >
+        <button className='see-task-details-button' onClick={handleTaskDetailsClick}>
           <CgInfo />
         </button>
       </div>
