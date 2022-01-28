@@ -4,10 +4,11 @@ import Task from './Task';
 const Tasks = ( {tasks, handleTaskClick, handleTaskRemotion} ) => {
   return (
     <>
-      {tasks.map((task) => (
+      {tasks.map((task, index) => (
         <Task 
           key={task.id}
           task={task} 
+          index={index}
           handleTaskClick={handleTaskClick} 
           handleTaskRemotion={handleTaskRemotion}
         />

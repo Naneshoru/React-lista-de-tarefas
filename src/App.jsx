@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {v4 as uuidv4} from 'uuid';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
 import Header from './components/Header.jsx'
@@ -59,16 +59,10 @@ const App = () => {
     setTasks(newTasks);
   }
 
-  const handleTaskClick = (taskId) => {
-    console.log(taskId)
-    const newTasks = tasks.map((task) => {
-      if (task.id === taskId) {
-        return { ...task, completed: !task.completed}
-      } 
-      return task
-    })
+  const handleTaskClick = (index) => {
+    tasks[index].completed = !tasks[index].completed;
 
-    setTasks(newTasks);
+    setTasks([...tasks]);
   }
 
   return (
