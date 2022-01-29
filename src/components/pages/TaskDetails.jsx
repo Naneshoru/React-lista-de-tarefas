@@ -1,17 +1,12 @@
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import Button from './Button';
+import Button from '../Button';
 
 import './TaskDetails.css'
 
-const TaskDetails = () => {
+const TaskDetails = ({ handleBackClick }) => {
   const params = useParams();
-  const navigate = useNavigate();
-
-  const handleBackClick = () => {
-    return navigate('/');
-  }
 
   return ( 
     <>
