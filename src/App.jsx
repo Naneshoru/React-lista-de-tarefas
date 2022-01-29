@@ -1,33 +1,18 @@
-import React, { useEffect, useState } from "react";
-import {v4 as uuidv4} from 'uuid';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Home from "./components/pages/Home.jsx";
 import Header from './components/Header.jsx'
-import Tasks from "./components/Tasks.jsx";
-import AddTask from "./components/AddTask";
-import TaskDetails from "./components/TaskDetails.jsx";
+import TaskDetails from "./components/pages/TaskDetails.jsx";
+import NotFound from "./components/pages/NotFound.jsx";
 
 import './App.css';
 
 const App = () => {
-  const [tasks, setTasks] = useState([
-    {
-      id: '1',
-      title: 'Estudar React',
-      completed: false
-    },
-    {
-      id: '2',
-      title: 'Estudar USP',
-      completed: false
-    },
-    {
-      id: '3',
-      title: 'Espairecer',
-      completed: true
-    }
-  ]);
+  
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -40,59 +25,23 @@ const App = () => {
   }, []) // lista de dependências, executa código quando as variáveis dentro do array mudarem
   // Neste caso, vai ser executado ao iniciar a página
 
-  const handleTaskAddition = (taskTitle) => {
-    const newTasks = [
-      ...tasks, 
-      { 
-        id: uuidv4(), 
-        title: taskTitle, 
-        completed: false 
-      }
-    ]
+  const navigate = useNavigate();
 
-    setTasks(newTasks);
-  }
-
-  const handleTaskRemotion = (taskId) => {
-    const newTasks = tasks.filter((task) => task.id !== taskId)
-
-    setTasks(newTasks);
-  }
-
-  const handleTaskClick = (index) => {
-    tasks[index].completed = !tasks[index].completed;
-
-    setTasks([...tasks]);
+  function handleBackClick() {
+    navigate(-1);
   }
 
   return (
-    <Router> 
-      <div className='container'> 
-        <Header />
-        <Routes>
-          <Route
-            path='/'
-            exact
-            element={
-              <>
-                <AddTask handleTaskAddition={handleTaskAddition} />
-                <Tasks 
-                  tasks={tasks} 
-                  handleTaskClick={handleTaskClick} 
-                  handleTaskRemotion={handleTaskRemotion}
-                />
-              </>
-            }
-          /> 
-          <Route
-            path='/:taskTitle'
-            exact
-            element={<TaskDetails />}
-          >
-          </Route>
-        </Routes>
-      </div>
-    </Router>
+    <div className='container'>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home tasks={tasks} setTasks={setTasks} />} /> 
+        <Route path='tasks'>
+          <Route path=':taskTitle' element={<TaskDetails handleBackClick={handleBackClick} />} />
+        </Route>
+        <Route path='*' element={<NotFound handleBackClick={handleBackClick} />} />            
+      </Routes>
+    </div>
   )
 }
 
