@@ -9,7 +9,7 @@ const Task = ({task, index, handleTaskClick, handleTaskRemotion }) => {
   const navigate = useNavigate();
 
   const handleTaskDetailsClick = () => {
-    navigate(`/${task.title.toLowerCase()}`);
+    navigate(`tasks/${task.title.toLowerCase()}`);
   }
 
   return (
