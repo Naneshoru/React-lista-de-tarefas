@@ -1,8 +1,9 @@
 
 
-import Tasks from "../Tasks.jsx";
-import AddTask from "../AddTask";
+import Tasks from "../../components/Tasks/Tasks.jsx";
+import AddTask from "../../components/AddTask/AddTask.jsx";
 import {v4 as uuidv4} from 'uuid';
+import { Fragment } from "react/cjs/react.production.min";
 
 const Home = ({ tasks, setTasks, navigate }) => {
 
@@ -32,7 +33,7 @@ const Home = ({ tasks, setTasks, navigate }) => {
   }
   
   return ( 
-    <>
+    <Fragment>
       <AddTask handleTaskAddition={handleTaskAddition} />
       <Tasks 
         tasks={tasks} 
@@ -40,7 +41,7 @@ const Home = ({ tasks, setTasks, navigate }) => {
         handleTaskRemotion={handleTaskRemotion}
         navigate={navigate}
       />
-    </>
+    </Fragment>
   );
 }
  

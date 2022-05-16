@@ -4,7 +4,7 @@
   /* width: 100%; */
 }
 
-.add-task-input {
+.add-task__text-input {
   height: 40px;
   padding: 0 10px;
   border-radius: 5px;
@@ -15,7 +15,7 @@
   font-size: 16px;
 }
 
-.add-task-button-container {
+.add-task__button {
   margin-left: 10px;
   flex: 1;
 }

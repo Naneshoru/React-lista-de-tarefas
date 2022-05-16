@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import Home from "./components/pages/Home.jsx";
-import Header from './components/Header.jsx'
-import TaskDetails from "./components/pages/TaskDetails.jsx";
-import NotFound from "./components/pages/NotFound.jsx";
+import Home from "./pages/Home/Home.jsx";
+import Header from './components/Header/Header.jsx';
+import TaskDetails from './pages/TaskDetails/TaskDetails.jsx';
+import NotFound from './pages/NotFound/NotFound.jsx';
 
 import './App.css';
 

@@ -1,9 +1,10 @@
 import React from 'react';
-import Task from './Task';
+import { Fragment } from 'react/cjs/react.production.min';
+import Task from '../Task/Task';
 
 const Tasks = ({ tasks, handleTaskClick, handleTaskRemotion }) => {
   return (
-    <>
+    <Fragment>
       {tasks.map((task, index) => (
         <Task 
           key={task.id}
@@ -13,7 +14,7 @@ const Tasks = ({ tasks, handleTaskClick, handleTaskRemotion }) => {
           handleTaskRemotion={handleTaskRemotion}
         />
       ))}
-    </>
+    </Fragment>
   );
 };
 
